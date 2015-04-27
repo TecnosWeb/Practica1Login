@@ -1,10 +1,13 @@
 package logicaNegocio;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GestionArchivoUsuario {
 
@@ -18,7 +21,7 @@ public class GestionArchivoUsuario {
 			while (line != null) {
 				line = br.readLine();
 				lineaSeparada = line.split("|");
-				if (lineaSeparada[0].equals(nombreUsuario)) {
+				if (lineaSeparada[0].equals(nombreUsuario)&&lineaSeparada[1].equals(pass)) {
 					br.close();
 					return true;
 				}
@@ -35,8 +38,11 @@ public class GestionArchivoUsuario {
 	public boolean registrarUsuario(String user, String password,
 			String nombre, String apellidos, String email) {
 		try {
-			FileWriter fr = new FileWriter("datos.txt", true);
-			fr.write(user + "|" + password + "|" + nombre + "|" + apellidos
+			
+			FileWriter fr = new FileWriter(new File("datos.txt"), true);
+			BufferedWriter bw = new BufferedWriter(fr,2);
+		    PrintWriter pw = new PrintWriter(bw); 
+		    pw.print(user + "|" + password + "|" + nombre + "|" + apellidos
 					+ "|" + email);
 			fr.close();
 			return true;
@@ -50,7 +56,7 @@ public class GestionArchivoUsuario {
 	public GestionArchivoUsuario() {
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		GestionArchivoUsuario gestion = new GestionArchivoUsuario();
 		String user = "snake";
 		String pass = "12345";
@@ -67,5 +73,5 @@ public class GestionArchivoUsuario {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

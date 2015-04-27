@@ -67,7 +67,7 @@ public class ControladorRegistro extends HttpServlet {
 				+ "--------------");
 		System.out.println("--------------------------------------");
 		numeroPeticion++;
-		response.sendRedirect("bienvenido.html");
+		//response.sendRedirect("bienvenido.html");
 
 	}
 
